@@ -21,8 +21,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
+    public function index(){
         return view('home');
+    }
+
+    public function SocialRedirect($service){
+       return Socialite::driver($service)->redirect();
+    }
+
+    public function CallbackRedirect($service){
+      return $user = Socialite::with($service)->user();
     }
 }
